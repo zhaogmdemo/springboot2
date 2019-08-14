@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.SpringBootVideo.mapper.CourseDao">
+ <resultMap type="com.example.SpringBootVideo.model.Course" id="courseMap">
+		<id column="id" property="id"/>
+		<result column="course_title" property="courseTitle"/>
+		<result column="course_desc" property="courseDesc"/>
+		<result column="subject_id" property="subjectId"/> 
+	</resultMap>
+	
+	 <insert id="add" parameterType="com.example.SpringBootVideo.model.Course" keyColumn="id" keyProperty="id" useGeneratedKeys="true">
+        insert into course(course_title,course_desc,subject_id) values(#{courseTitle},#{courseDesc},#{subjectId})
+    </insert>
+    
+	 <!-- 修改 -->
+      <update id="update" parameterType="com.example.SpringBootVideo.model.Course" >
+        update course set course_title=#{courseTitle},course_desc=#{courseDesc},subject_id=#{subjectId} where id=#{id}
+      </update>
+
+      <!-- 删除 -->
+      <delete id="delete" >
+          delete from course where id=#{id}    
+      </delete>
+      
+      <delete id="deleteAll" >
+          delete  from  course 
+         <where>
+  			 <foreach collection="array" item="id" open="and id in (" close=")" separator=",">
+	   		#{id}
+			</foreach>
+     	</where>
+
+
+ 
+      </delete>
+      
+      	<delete id="deleteIn">
+		delete from course where id in(
+		<foreach collection="list" item="ids" separator=","
+			index="number">
+			#{ids}
+		</foreach>
+		)
+	</delete>
+      
+	
+ <select id="selectAll"  resultMap="courseMap" >
+		select * from course 
+	</select> 
+	
+  <select id="selectHtml"  resultMap="courseMap" >
+	SELECT * from course where course.subject_id=#{subjectId}
+	</select> 
+	<select id="selectOne"  resultMap="courseMap">
+         select * from course where id=#{id}    
+      </select>
+      
+	
+	
+</mapper>

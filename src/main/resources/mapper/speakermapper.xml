@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.SpringBootVideo.mapper.SpeakerDao">
+ <resultMap type="com.example.SpringBootVideo.model.Speaker" id="speakerMap">
+		<id column="id" property="id"/>
+		<result column="speaker_name" property="speakerName"/>
+		<result column="speaker_desc" property="speakerDesc"/>
+		<result column="speaker_job" property="speakerJob"/> 
+		<result column="pir_url" property="pirUrl"/> 
+	</resultMap>
+	
+	 <insert id="add" parameterType="com.example.SpringBootVideo.model.Speaker" keyColumn="id" keyProperty="id" useGeneratedKeys="true">
+        insert into speaker(speaker_name,speaker_desc,speaker_job,pir_url) values(#{speaker_name},#{speaker_desc},#{speaker_job},#{pir_url})
+    </insert>
+    
+	 <!-- 修改 -->
+      <update id="update" parameterType="com.example.SpringBootVideo.model.Speaker" >
+        update speaker set speaker_name=#{speaker_name},speaker_desc=#{speaker_desc},speaker_job=#{speaker_job}, pir_url=#{pir_url} where id=#{id}
+      </update>
+
+      <!-- 删除 -->
+      <delete id="delete" >
+          delete from speaker where id=#{id}    
+      </delete>
+	
+ <select id="selectAll"  resultMap="speakerMap" >
+		select * from speaker 
+	</select> 
+	<select id="selectOne"  resultMap="speakerMap">
+         select * from speaker where id=#{id}    
+      </select>
+      
+	
+    
+	
+</mapper>

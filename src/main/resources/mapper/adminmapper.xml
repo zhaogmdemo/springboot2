@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.SpringBootVideo.mapper.AdminDao">
+ <resultMap type="com.example.SpringBootVideo.model.Admin" id="adminMap">
+		<id column="admin_id" property="adminId"/>
+		<result column="admin_is_super" property="adminIsSuper"/>
+		<result column="accounts" property="accounts"/>
+		<result column="password" property="password"/>
+		<result column="admin_remark" property="adminRemark"/> 
+	</resultMap>
+	
+	 <insert id="add" parameterType="com.example.SpringBootVideo.model.Admin" keyColumn="admin_id" keyProperty="adminId" useGeneratedKeys="true">
+        insert into admin(accounts,password,admin_reamrk) values(#{accounts},#{password},#{admin_reamrk})
+    </insert>
+    
+	 <!-- 修改 -->
+      <update id="update" parameterType="com.example.SpringBootVideo.model.Admin" >
+        update admin set accounts=#{accounts},password=#{password},admin_reamrk=#{admin_reamrk} where admin_id=#{admin_id}
+      </update>
+
+      <!-- 删除 -->
+      <delete id="delete" >
+          delete from admin where admin_id=#{admin_id}    
+      </delete>
+	
+ <select id="selectAll"  resultMap="adminMap" >
+		select * from admin 
+	</select> 
+	<select id="selectOne"  resultMap="adminMap">
+         select * from admin where admin_id=#{admin_id}    
+      </select>
+      
+     <select id="selectName"  resultMap="adminMap">
+         select * from admin where accounts=#{accounts}    
+      </select>
+	
+	
+</mapper>

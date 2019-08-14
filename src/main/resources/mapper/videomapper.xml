@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.SpringBootVideo.mapper.VideoDao">
+ 
+		<resultMap type="com.example.SpringBootVideo.model.Video" id="videoMap">
+		<id column="video_id" property="videoId"/>
+		<result column="title" 	property="title"/>
+		<result column="detail" property="detail"/>
+		<result column="time" 	property="time"/> 
+		<result column="speaker_id" property="speakerId"/>
+		<result column="course_id" property="courseId"/> 		
+		<result column="video_url" property="videoUrl"/> 
+		<result column="image_url" property="imageUrl"/> 
+		<result column="play_num" property="playNum"/> 
+		<association property="speaker" javaType="com.example.SpringBootVideo.model.Speaker">
+		    <id column="id" property="id"/>
+		     <id column="speaker_name" property="speakerName"/>
+		</association>
+								
+	</resultMap>
+	
+	
+	
+		<resultMap type="com.example.SpringBootVideo.model.Video" id="videoMap2">
+		<id column="video_id" property="videoId"/>
+		<result column="title" 	property="title"/>
+		<result column="detail" property="detail"/>
+		<result column="time" 	property="time"/> 
+		<result column="speaker_id" property="speakerId"/>
+		<result column="course_id" property="courseId"/> 		
+		<result column="video_url" property="videoUrl"/> 
+		<result column="image_url" property="imageUrl"/> 
+		<result column="play_num" property="playNum"/> 
+		<association property="speaker" javaType="com.example.SpringBootVideo.model.Speaker">
+		    <id column="id" property="id"/>
+		     <id column="speaker_name" property="speakerName"/>
+		     <id column="pir_url" property="pirUrl"/>
+		</association>
+		<association property="course" javaType="com.example.SpringBootVideo.model.Course">
+		    <id column="id" property="id"/>
+		     <id column="course_title" property="courseTitle"/>
+		     <id column="course_desc" property="courseDesc"/>
+		     
+		      <id column="subject_id" property="subjectId"/>
+		</association>
+								
+	</resultMap>
+	
+	 <insert id="add" parameterType="com.example.SpringBootVideo.model.Video" keyColumn="video_id" keyProperty="video_id" useGeneratedKeys="true">
+        insert into video(title,detail,time,speaker_id,course_id,video_url,image_url,play_num) values(#{title},#{detail},#{time},#{speaker_id},#{course_id},#{video_url},#{image_url},#{play_num})
+    </insert>
+    
+	 <!-- 修改 -->
+      <update id="update" parameterType="com.example.SpringBootVideo.model.Video" >
+        update video set title=#{title},detail=#{detail},time=#{time}, speaker_id=#{speaker_id},course_id=#{course_id},video_url=#{video_url}, image_url=#{image_url}  where video_id=#{video_id}
+      </update>
+
+      <!-- 删除 -->
+      <delete id="delete" >
+          delete from video where video_id=#{video_id}    
+      </delete>
+	
+ 	<select id="selectAll"  resultMap="videoMap" >
+		select * from video LEFT JOIN speaker on video.speaker_id = speaker.id
+		
+	</select> 
+	
+ 	<select id="likeAll"  resultMap="videoMap2" >
+		
+		 select * from video LEFT JOIN speaker on video.speaker_id = speaker.id LEFT JOIN course on video.course_id=course.id 
+		
+	    <where>  <!-- user_id like concat('%',#{id},'%') -->
+	        <if test="factor!=null and factor!=''"> 
+	            title like concat('%',#{factor},'%') </if>
+	    <if test="speaker_id!=0">
+	   and  speaker_id =#{speaker_id}
+	    </if>
+        <if test="course_id!=0">
+      and  course_id =#{course_id}
+        </if>
+        </where>
+	</select> 
+	
+ 	<select id="selectCourse"  resultMap="videoMap2" >
+	 select * from video LEFT JOIN speaker on video.speaker_id = speaker.id LEFT JOIN course  on video.course_id=course.id WHERE  course_id in (SELECT course.id from `course` where subject_id=#{subject_id})
+		
+	</select> 
+	
+ 	<select id="selectSpeakerId"  resultMap="videoMap" >
+		SELECT speaker.speaker_name  from video LEFT JOIN speaker on video.speaker_id = speaker.id
+		
+	</select> 
+	
+	<select id="selectOne"  resultMap="videoMap2">
+        select * from video,speaker,course  where video.speaker_id=speaker.id and video.course_id=course.id and video_id=#{video_id}
+      </select>
+      
+	
+ 	<select id="selectVideoFirst"  resultMap="videoMap2" >
+		SELECT * from video  LEFT JOIN speaker on video.speaker_id=speaker.id  LEFT JOIN course on video.course_id=course.id where video_id=#{video_id}
+		
+	</select> 
+	
+ 	
+ 	<select id="selectVideo"  resultMap="videoMap2" >
+	SELECT * from video left join speaker on video.speaker_id=speaker.id WHERE video.speaker_id = (SELECT speaker_id from video where video_id=#{video_id}) 
+		
+	</select> 
+	
+	
+   
+	
+</mapper>

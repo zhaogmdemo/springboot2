@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.SpringBootVideo.mapper.SubjectDao">
+ 
+		<resultMap type="com.example.SpringBootVideo.model.Subject" id="subjectMap">
+		<id column="subject_id" property="subjectId"/>
+		<result column="subject_name" property="subjectName"/>
+	
+	</resultMap>
+	
+	 <insert id="add" parameterType="com.example.SpringBootVideo.model.Subject" keyColumn="subject_id" keyProperty="subjectId" useGeneratedKeys="true">
+        insert into subject(subject_title,subject_desc,subject_id) values(#{subject_title},#{subject_desc},#{subject_id})
+    </insert>
+    
+	 <!-- 修改 -->
+      <update id="update" parameterType="com.example.SpringBootVideo.model.Subject" >
+        update subject set subject_title=#{subject_title},subject_desc=#{subject_desc},subject_id=#{subject_id} where id=#{id}
+      </update>
+
+      <!-- 删除 -->
+      <delete id="delete" >
+          delete from subject where subject_id=#{subject_id}    
+      </delete>
+	
+ <select id="selectAll"  resultMap="subjectMap" >
+		select * from subject 
+	</select> 
+	<select id="selectOne"  resultMap="subjectMap">
+         select * from subject where subject_id=#{subject_id}    
+      </select>
+      
+   
+   
+	
+</mapper>
