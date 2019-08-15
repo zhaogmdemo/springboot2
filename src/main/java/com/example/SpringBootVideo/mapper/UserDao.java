@@ -26,4 +26,5 @@ public interface UserDao {
 	List<User> likeAll(User user);
 
 	void deleteAll(int[] ids);
+	User selectAccounts(String accounts);
 }

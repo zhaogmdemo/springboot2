@@ -26,4 +26,5 @@ public interface UserService {
 	List<User> likeAll(User user);
 
 	Integer  deleteAll(int[] ids);
+	User selectAccounts(String accounts);
 }
