@@ -48,7 +48,7 @@ public class HVideoController {
 			//��Ƶչʾ����
 			@RequestMapping("/VideoShow.do")
 			public String getVideoShow(@RequestParam(value = "pn", defaultValue = "1") Integer pn, Model model) {
-				// �ӵ�һ����ʼ ÿҳ��ѯ��������
+				// �ӵ�һ����ʼ ÿҳ��ѯ��������000000000000
 
 				PageHelper.startPage(pn, 8);
 
