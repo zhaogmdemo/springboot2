@@ -21,6 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.example.SpringBootVideo.model.Course;
 import com.example.SpringBootVideo.model.User;
 import com.example.SpringBootVideo.model.Video;
+import com.example.SpringBootVideo.service.CQUserService;
 import com.example.SpringBootVideo.service.CourseService;
 import com.example.SpringBootVideo.service.VideoService;
 import com.example.SpringBootVideo.util.MD5Utils;
@@ -34,7 +35,7 @@ public class UserController {
 	@Autowired
 	CourseService courseService;
 	@Autowired
-	UserService UserService;
+	CQUserService UserService;
 	
 	@ResponseBody
 	@RequestMapping(value="UserAdd.action")
