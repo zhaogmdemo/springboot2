@@ -2,7 +2,11 @@ package com.example.SpringBootVideo.service;
 
 import java.util.List;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import com.example.SpringBootVideo.model.User;
+import com.example.SpringBootVideo.util.PictureResult;
+
 
 
 
@@ -26,4 +30,12 @@ public interface UserService {
 	List<User> likeAll(User user);
 
 	Integer  deleteAll(int[] ids);
+
+
+	
+	User selectByAccounts(String accounts);//根据accounts查询
+
+	PictureResult upload(MultipartFile uploadFile);
+	
+
 }

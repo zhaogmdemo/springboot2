@@ -3,11 +3,13 @@ package com.example.SpringBootVideo.mapper;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
+import org.mybatis.spring.annotation.MapperScan;
+import org.springframework.stereotype.Repository;
 
 import com.example.SpringBootVideo.model.User;
 
 
-
+@Repository
 public interface UserDao {
 	void add(User user);
 
@@ -26,4 +28,9 @@ public interface UserDao {
 	List<User> likeAll(User user);
 
 	void deleteAll(int[] ids);
+
+	User selectAccounts(String accounts);
+
+	
+	User selectByAccounts(String accounts);
 }

@@ -62,7 +62,7 @@ public class HAdminController {
 	 */
 	@RequestMapping("/AdminLoginManager.do")
 	public String getAdmin(@RequestParam(value = "pn", defaultValue = "1") Integer pn, Model model) {
-		// 从第一条开始 每页查询四条数据1111
+		// 从第一条开始 每页查询四条数据11110000000
 		
 		PageHelper.startPage(pn, 4);
 		List<Admin> admin = adminservice.selectAll();
