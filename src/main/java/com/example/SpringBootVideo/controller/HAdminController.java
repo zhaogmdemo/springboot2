@@ -53,7 +53,7 @@ public class HAdminController {
 
 
 	
-	//课程展示界面
+	//课程展示界面AdminLoginManager
 	/**
 	 * 
 	 * @param pn
