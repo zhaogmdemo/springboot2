@@ -10,12 +10,12 @@
 	</resultMap>
 	
 	 <insert id="add" parameterType="com.example.SpringBootVideo.model.Admin" keyColumn="admin_id" keyProperty="adminId" useGeneratedKeys="true">
-        insert into admin(accounts,password,admin_reamrk) values(#{accounts},#{password},#{admin_reamrk})
+        insert into admin(accounts,password,admin_remark) values(#{accounts},#{password},#{adminRemark})
     </insert>
     
 	 <!-- 修改 -->
       <update id="update" parameterType="com.example.SpringBootVideo.model.Admin" >
-        update admin set accounts=#{accounts},password=#{password},admin_reamrk=#{admin_reamrk} where admin_id=#{admin_id}
+        update admin set accounts=#{accounts},password=#{password},admin_reamrk=#{adminReamrk} where admin_id=#{admin_id}
       </update>
 
       <!-- 删除 -->
@@ -27,7 +27,7 @@
 		select * from admin 
 	</select> 
 	<select id="selectOne"  resultMap="adminMap">
-         select * from admin where admin_id=#{admin_id}    
+         select * from admin where admin_id=#{adminId}    
       </select>
       
      <select id="selectName"  resultMap="adminMap">

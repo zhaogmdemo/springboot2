@@ -10,12 +10,12 @@
 	</resultMap>
 	
 	 <insert id="add" parameterType="com.example.SpringBootVideo.model.Speaker" keyColumn="id" keyProperty="id" useGeneratedKeys="true">
-        insert into speaker(speaker_name,speaker_desc,speaker_job,pir_url) values(#{speaker_name},#{speaker_desc},#{speaker_job},#{pir_url})
+        insert into speaker(speaker_name,speaker_desc,speaker_job,pir_url) values(#{speakerName},#{speakerDesc},#{speakerJob},#{pirUrl})
     </insert>
     
 	 <!-- 修改 -->
       <update id="update" parameterType="com.example.SpringBootVideo.model.Speaker" >
-        update speaker set speaker_name=#{speaker_name},speaker_desc=#{speaker_desc},speaker_job=#{speaker_job}, pir_url=#{pir_url} where id=#{id}
+        update speaker set speaker_name=#{speakerName},speaker_desc=#{speakerDesc},speaker_job=#{speakerJob}, pir_url=#{pirUrl} where id=#{id}
       </update>
 
       <!-- 删除 -->

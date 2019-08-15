@@ -87,7 +87,7 @@ b {
 			    <label for="subjectId" class="col-sm-2 control-label">姓名</label>
 			    <div class="col-sm-10">
 
-			<input class="form-control" name="speaker_name" id="speaker_name" placeholder="主讲人姓名" type="text">
+			<input class="form-control" name="speakerName" id="speakerName" placeholder="主讲人姓名" type="text">
 
 
 			    </div>
@@ -98,19 +98,19 @@ b {
 			<div class="form-group">
 				<label for="subjectTitle" class="col-sm-2 control-label">职位</label>
 				<div class="col-sm-10">
-					<input class="form-control" name="speaker_job" id="speaker_job" placeholder="主讲人职位" type="text">
+					<input class="form-control" name="speakerJob" id="speaker_job" placeholder="主讲人职位" type="text">
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="courseDesc" class="col-sm-2 control-label">头像地址</label>
 				<div class="col-sm-10">
-					<input class="form-control" id="pir_url" placeholder="头像地址" name="pir_url" rows="3"></input>
+					<input class="form-control" id="pirUrl" placeholder="头像地址" name="pir_url" rows="3"></input>
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="courseDesc" class="col-sm-2 control-label">简介</label>
 				<div class="col-sm-10">
-					<textarea class="form-control" id="speaker_desc" name="speaker_desc" placeholder="简介" rows="3"></textarea>
+					<textarea class="form-control" id="speakerDesc" name="speakerDesc" placeholder="简介" rows="3"></textarea>
 				</div>
 			</div>
 			<div class="form-group">

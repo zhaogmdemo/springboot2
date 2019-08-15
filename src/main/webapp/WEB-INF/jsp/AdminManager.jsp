@@ -167,9 +167,12 @@
 	
 		<a href=">2</a>&gt; -->
 	
-        </td></tr>
+        </td>
+        
+        </tr>
         </tbody>
       </table>
+      <p>备注：超级管理员为1,普通管理员为0,超级管理员可以对管理员增删改查</p>
       <hr style="height:1px;border:none;border-top:1px solid #ccc;" />
         <!-- 分页导航栏 -->
 
@@ -184,10 +187,10 @@
             <div class="col-md-6">
                 <nav aria-label="Page navigation">
                   <ul class="pagination">
-                    <li><a href="${path}/AdminLogin1.do?pn=1">首页</a></li>
+                    <li><a href="${path}/AdminLoginManager.do?pn=1">首页</a></li>
                     <c:if test="${pageInfo.hasPreviousPage }">
                          <li>
-                          <a href="${path}/AdminLogin1.do?pn=${pageInfo.pageNum-1}" aria-label="Previous">
+                          <a href="${path}/AdminLoginManager.do?pn=${pageInfo.pageNum-1}" aria-label="Previous">
                             <span aria-hidden="true">&laquo;</span>
                           </a>
                         </li>
@@ -198,17 +201,17 @@
                             <li class="active"><a href="#">${ page_Num}</a></li>
                         </c:if>
                         <c:if test="${page_Num != pageInfo.pageNum }">
-                            <li><a href="${path}/AdminLogin1.do?pn=${ page_Num}">${ page_Num}</a></li>
+                            <li><a href="${path}/AdminLoginManager.do?pn=${ page_Num}">${ page_Num}</a></li>
                         </c:if>
                     </c:forEach> 
                     <c:if test="${pageInfo.hasNextPage }">
                         <li>
-                          <a href="${path}/AdminLogin1.do?pn=${pageInfo.pageNum+1}" aria-label="Next">
+                          <a href="${path}/AdminLoginManager.do?pn=${pageInfo.pageNum+1}" aria-label="Next">
                             <span aria-hidden="true">&raquo;</span>
                           </a>
                         </li>
                     </c:if>   
-                    <li><a href="${path}/AdminLogin1.do?pn=${pageInfo.pages}">末页</a></li>
+                    <li><a href="${path}/AdminLoginManager.do?pn=${pageInfo.pages}">末页</a></li>
                   </ul>
                 </nav>
             </div>
@@ -331,7 +334,7 @@
 
 	
 		function showAddPage(){
-			location.href="${path}/addCourse.do";
+			location.href="${path}/ManageraddCourse.do";
 		}
 		function delCourseById(Obj,id,title){
 

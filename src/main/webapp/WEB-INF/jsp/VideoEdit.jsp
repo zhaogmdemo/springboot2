@@ -86,7 +86,7 @@ b {
 			<div class="form-group">
 			    <label for="subjectId" class="col-sm-2 control-label">视频标题</label>
 			    <div class="col-sm-10">
- 			<input type="hidden" name="video_id" value="${Video.video_id}" />
+ 			<input type="hidden" name="videoId" value="${Video.videoId}" />
 			<input class="form-control"  value="${Video.title }"name="title" id="title" placeholder="视频名称" type="text">
 
 
@@ -100,9 +100,9 @@ b {
 			    <div class="col-sm-10">
 
 					<select name="speaker_id" id="subjectId" class="form-control">
-						<option value="${Video.speaker.id}" selected="selected">${Video.speaker.speaker_name}</option>
+						<option value="${Video.speaker.id}" selected="selected">${Video.speaker.speakerName}</option>
 						<c:forEach var="speaker" items="${Speaker}">
-							<option value="${speaker.id}">${speaker.speaker_name}</option>
+							<option value="${speaker.id}">${speaker.speakerName}</option>
 						</c:forEach>
 						
 
@@ -118,9 +118,9 @@ b {
 			    <div class="col-sm-10">
 
 					<select name="course_id" id="subjectId" class="form-control">
-						<option value="${Video.course.id}" selected="selected">${Video.course.course_title}</option>
+						<option value="${Video.course.id}" selected="selected">${Video.course.courseTitle}</option>
 						<c:forEach var="course" items="${Course}">
-							<option value="${course.id}">${course.course_title}</option>
+							<option value="${course.id}">${course.courseTitle}</option>
 						</c:forEach>
 
 						<%-- <c:forEach var="subject" items="">
@@ -140,13 +140,13 @@ b {
 			<div class="form-group">
 				<label for="courseDesc" class="col-sm-2 control-label">封面图片地址</label>
 				<div class="col-sm-10">
-					<input class="form-control" value="${Video.image_url}"id="image_url" placeholder="具体的url" name="image_url" rows="3"></input>
+					<input class="form-control" value="${Video.imageUrl}"id="image_url" placeholder="具体的url" name="imageUrl" rows="3"></input>
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="courseDesc" class="col-sm-2 control-label">视频播放地址</label>
 				<div class="col-sm-10">
-					<input class="form-control" id="video_url" value="${Video.video_url}" placeholder="具体的url" name="video_url" rows="3"></input>
+					<input class="form-control" id="video_url" value="${Video.videoUrl}" placeholder="具体的url" name="videoUrl" rows="3"></input>
 				</div>
 			</div>
 			<div class="form-group">

@@ -81,7 +81,7 @@ display:inline-block;
 		      批量删除
 		</button><div class="d">
 		<input type="text" placeholder="标题" id="in" name="factor" class="" value="">
-			<select name="speaker_id" id="speaker_id" class="btn btn-primary" >
+			<select name="speakerId" id="speakerId" class="btn btn-primary" >
 				<option  value="0" selected="selected">请选择老师</option>
 
 						<c:forEach var="speaker" items="${Speaker.data}">
@@ -89,7 +89,7 @@ display:inline-block;
 							<option value="${speaker.id}">${speaker.speakerName}</option>
 						</c:forEach>	
 			</select>
-			<select name="course_id" id="course_id" class="btn btn-primary">
+			<select name="courseId" id="courseId" class="btn btn-primary">
 				<option value="0" selected="selected">请选择课程</option>
 				<c:forEach var="course" items="${Course.data}">
 							<option value="${course.id}">${course.courseTitle}</option>

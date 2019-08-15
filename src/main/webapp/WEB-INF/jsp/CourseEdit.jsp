@@ -90,7 +90,7 @@ b {
 			    <label for="subjectId" class="col-sm-2 control-label">所属学科</label>
 			    <div class="col-sm-10">
 									
-					<select name="subject_id" id="subjectId" class="form-control">
+					<select name="subjectId" id="subjectId" class="form-control">
 						<option value="${Course.subjectId}">${Subject.subjectName}</option>
 							
 							
@@ -110,13 +110,13 @@ b {
 				<label for="subjectTitle" class="col-sm-2 control-label">标题</label>
 				<div class="col-sm-10">
 					 <input type="hidden" name="id" value="${Course.id}" />
-					<input class="form-control" name="course_title" id="subjectTitle" value="${Course.courseTitle}" placeholder="课程标题" type="text">
+					<input class="form-control" name="courseTitle" id="subjectTitle" value="${Course.courseTitle}" placeholder="课程标题" type="text">
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="courseDesc" class="col-sm-2 control-label">简介</label>
 				<div class="col-sm-10">
-					<textarea class="form-control" id="courseDesc" name="course_desc" rows="3">${Course.courseDesc}</textarea>
+					<textarea class="form-control" id="courseDesc" name="courseDesc" rows="3">${Course.courseDesc}</textarea>
 				</div>
 			</div>
 			<div class="form-group">
@@ -137,13 +137,13 @@ b {
 <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
-<script src="./课程修改_files/jquery-1.js.下载"></script>
-<script src="./课程修改_files/bootstrap.js.下载"></script>
-<script src="./课程修改_files/confirm.js.下载"></script>
-<script src="./课程修改_files/jquery.js.下载"></script>
-<script src="./课程修改_files/message_cn.js.下载"></script>
-<script src="./JS1/jquery-3.4.1.js"></script>
-<script src="./JS1/jquery.validate.min.js"></script>
+<script src="${pageContext.request.contextPath}//课程修改_files/jquery-1.js.下载"></script>
+<script src="${pageContext.request.contextPath}//课程修改_files/bootstrap.js.下载"></script>
+<script src="${pageContext.request.contextPath}//课程修改_files/confirm.js.下载"></script>
+<script src="${pageContext.request.contextPath}//课程修改_files/jquery.js.下载"></script>
+<script src="${pageContext.request.contextPath}//课程修改_files/message_cn.js.下载"></script>
+<script src="${pageContext.request.contextPath}//JS1/jquery-3.4.1.js"></script>
+<script src="${pageContext.request.contextPath}//JS1/jquery.validate.min.js"></script>
 
 
 <script type="text/javascript">

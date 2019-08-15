@@ -86,7 +86,7 @@ b {
 			<div class="form-group">
 			    <label for="subjectId" class="col-sm-2 control-label">姓名</label>
 			    <div class="col-sm-10">
-				<input class="form-control" name="speaker_name" id="speaker_name"  value="${Speaker.speaker_name}" type="text">
+				<input class="form-control" name="speakerName" id="speaker_name"  value="${Speaker.speakerName}" type="text">
 
 
 			    </div>
@@ -98,7 +98,7 @@ b {
 				<label for="subjectTitle" class="col-sm-2 control-label">职位</label>
 				<div class="col-sm-10">
 				   <input type="hidden" name="id" value="${Speaker.id}" />
-					<input class="form-control" name="speaker_job" id="speaker_job" value="${Speaker.speaker_job}" type="text">
+					<input class="form-control" name="speakerJob" id="speaker_job" value="${Speaker.speakerJob}" type="text">
 				</div>
 			</div>
 			
@@ -106,13 +106,13 @@ b {
 				<label for="subjectTitle" class="col-sm-2 control-label">头像地址</label>
 				<div class="col-sm-10">
 				
-					<input class="form-control" name="pir_url" id="pir_url" value="${Speaker.pir_url}" type="text">
+					<input class="form-control" name="pirUrl" id="pir_url" value="${Speaker.pirUrl}" type="text">
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="courseDesc" class="col-sm-2 control-label">简介</label>
 				<div class="col-sm-10">
-					<input class="form-control" id="speaker_desc" name="speaker_desc" value="${Speaker.speaker_desc} type="text"></input>
+					<input class="form-control" id="speakerDesc" name="speakerDesc" value="${Speaker.speakerDesc} type="text"></input>
 				</div>
 			</div>
 			<div class="form-group">

@@ -102,7 +102,7 @@ b {
 					<select name="speaker_id" id="subjectId" class="form-control">
 						<option value="" selected="selected">请选择讲师</option>
 						<c:forEach var="speaker" items="${Speaker}">
-							<option value="${speaker.id}">${speaker.speaker_name}</option>
+							<option value="${speaker.id}">${speaker.speakerName}</option>
 						</c:forEach>
 						
 
@@ -120,7 +120,7 @@ b {
 					<select name="course_id" id="subjectId" class="form-control">
 						<option value="" selected="selected">请选择所属课程</option>
 						<c:forEach var="course" items="${Course}">
-							<option value="${course.id}">${course.course_title}</option>
+							<option value="${course.id}">${course.courseTitle}</option>
 						</c:forEach>
 
 						<%-- <c:forEach var="subject" items="">
@@ -140,13 +140,13 @@ b {
 			<div class="form-group">
 				<label for="courseDesc" class="col-sm-2 control-label">封面图片地址</label>
 				<div class="col-sm-10">
-					<input class="form-control" id="pir_url" placeholder="具体的url" name="pir_url" rows="3"></input>
+					<input class="form-control" id="pir_url" placeholder="具体的url" name="pirUrl" rows="3"></input>
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="courseDesc" class="col-sm-2 control-label">视频播放地址</label>
 				<div class="col-sm-10">
-					<input class="form-control" id="video_url" placeholder="具体的url" name="video_url" rows="3"></input>
+					<input class="form-control" id="video_url" placeholder="具体的url" name="videoUrl" rows="3"></input>
 				</div>
 			</div>
 			<div class="form-group">

@@ -141,14 +141,14 @@ public class HCourseController {
 		if (course != null) {
 			courseService.add(course);
 		}
-		return "redirect:/AdminLogin.do";
+		return "redirect:/AdminLogin1.do";
 	}
 
 	//删除操作
 	@RequestMapping("/delCourse.do")
 	public ModelAndView deleteUser(int id, Model model) {
 		courseService.delete(id);
-		ModelAndView mav = new ModelAndView("redirect:/AdminLogin.do");
+		ModelAndView mav = new ModelAndView("redirect:/AdminLogin1.do");
 
 		return mav;
 	}
@@ -201,9 +201,20 @@ public class HCourseController {
 	@RequestMapping("/getCourse.do")
 	public String getUser(int id, Model model) {
 
-		Course course=courseService.selectOne(id);		
+		Course course=courseService.selectOne(id);
+	
 		Subject subject=subjectService.selectOne(Integer.valueOf(course.getSubjectId()));
-		model.addAttribute("Course", courseService.selectOne(id));
+		System.out.println(course+"+"+subject);
+		VideoResult videoResult=new VideoResult();
+		videoResult.setData(course);
+		videoResult.setMsg("ok");
+		videoResult.setStatus(200);
+		
+		VideoResult videoResult2=new VideoResult();
+		videoResult.setData(subject);
+		videoResult.setMsg("ok");
+		videoResult.setStatus(200);
+		model.addAttribute("Course", course);
 		model.addAttribute("Subject", subject);
 		return "CourseEdit";
 	}
@@ -214,7 +225,7 @@ public class HCourseController {
 
 		courseService.update(course);
 
-		ModelAndView mav = new ModelAndView("redirect:/AdminLogin.do");
+		ModelAndView mav = new ModelAndView("redirect:/AdminLogin1.do");
 		return mav;
 
 	}

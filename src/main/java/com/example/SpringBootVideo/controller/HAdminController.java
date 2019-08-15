@@ -64,7 +64,7 @@ public class HAdminController {
 	public String getAdmin(@RequestParam(value = "pn", defaultValue = "1") Integer pn, Model model) {
 		// 从第一条开始 每页查询四条数据11110000000
 		
-		PageHelper.startPage(pn, 4);
+		PageHelper.startPage(pn, 6);
 		List<Admin> admin = adminservice.selectAll();
 		VideoResult videoResult=new VideoResult();
 		videoResult.setData(admin);
@@ -88,23 +88,23 @@ public class HAdminController {
 		videoResult.setMsg("ok");
 		videoResult.setStatus(200);
 		model.addAttribute("Subject", videoResult);
-		return "CourseAdd";
+		return "AdminManagerAdd";
 	}
 
 	//添加后返回课程界面
 	@RequestMapping("/ManagerAddCourse.do")
-	public String addUser(Model model, Course course) {
-		if (course != null) {
-			courseService.add(course);
+	public String addUser(Model model, Admin admin) {
+		if (admin != null) {
+			adminservice.add(admin);
 		}
-		return "redirect:/AdminLogin.do";
+		return "redirect:/AdminLoginManager.do";
 	}
 
 	//删除操作
 	@RequestMapping("/ManagerdelCourse.do")
 	public ModelAndView deleteUser(int id, Model model) {
-		courseService.delete(id);
-		ModelAndView mav = new ModelAndView("redirect:/AdminLogin.do");
+		adminservice.delete(id);
+		ModelAndView mav = new ModelAndView("redirect:/AdminLoginManager.do");
 
 		return mav;
 	}
@@ -121,7 +121,7 @@ public class HAdminController {
 //		  }
 		  
         courseService.deleteIn((ArrayList<Integer>)Array);	
-		return "forward:/AdminLogin1.do";
+		return "forward:/AdminLoginManager.do";
 
 	}
 	
@@ -166,11 +166,11 @@ public class HAdminController {
 
 	//编辑后返回课程界面
 	@RequestMapping("/ManagerupdateCourse.do")
-	public ModelAndView UpdateUser(Model model, Course course) {
+	public ModelAndView UpdateUser(Model model, Admin admin) {
 
-		courseService.update(course);
+		adminservice.update(admin);
 
-		ModelAndView mav = new ModelAndView("redirect:/AdminLogin.do");
+		ModelAndView mav = new ModelAndView("redirect:/AdminLoginManager.do");
 		return mav;
 
 	}

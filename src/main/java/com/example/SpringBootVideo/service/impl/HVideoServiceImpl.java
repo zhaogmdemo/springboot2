@@ -54,9 +54,9 @@ public class HVideoServiceImpl implements VideoService{
 		return videoDao.selectAll();
 	}
 
-	public List<Video> likeAll(String factor,Integer speaker_id,Integer course_id) {
+	public List<Video> likeAll(String factor,Integer speakerId,Integer courseId) {
 		// TODO Auto-generated method stub
-		return videoDao.likeAll(factor,speaker_id,course_id);
+		return videoDao.likeAll(factor,speakerId,courseId);
 	}
 
 	public List<Video> selectCourse(Integer id) {

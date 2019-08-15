@@ -111,19 +111,39 @@ public class HVideoController {
 			*/
 			@RequestMapping("/VideoLikeShow.do")
 			public String getVideoShow1(@RequestParam(value = "pn", defaultValue = "1") Integer pn, Model model,
-					@Param("title")String title,@Param("factor")String factor,@Param("speaker_id")Integer speaker_id,@Param("course_id")Integer course_id) {
+					@Param("title")String title,@Param("factor")String factor,@Param("speakerId")Integer speakerId,@Param("courseId")Integer courseId) {
 				// �ӵ�һ����ʼ ÿҳ��ѯ��������
 				System.out.println("1");
 				PageHelper.startPage(pn, 9);
 
-				List<Video> video = videoService.likeAll(factor,speaker_id, course_id);
+				List<Video> video = videoService.likeAll(factor,speakerId, courseId);
+			
+				List<Speaker> speaker = speakerService.selectAll();
+				List<Course> course = courseService.selectAll();
+				
+				VideoResult videoResult=new VideoResult();
+				videoResult.setData(video);
+				videoResult.setMsg("ok");
+				videoResult.setStatus(200);
+				
+				
+				VideoResult videoResult2=new VideoResult();
+				videoResult2.setData(speaker);
+				videoResult2.setMsg("ok");
+				videoResult2.setStatus(200);
+				
+				VideoResult videoResult3=new VideoResult();
+				videoResult3.setData(course);
+				videoResult3.setMsg("ok");
+				videoResult3.setStatus(200);
 				System.out.println(video);
 				
 				// ���û���Ϣ����PageInfo������
 				PageInfo page = new PageInfo(video, 9);
 				model.addAttribute("pageInfo", page);
-				model.addAttribute("Speaker", speakerService.selectAll());
-				model.addAttribute("Course",  courseService.selectAll());
+				model.addAttribute("Video", videoResult);
+				model.addAttribute("Speaker", videoResult2);
+				model.addAttribute("Course",  videoResult3);
 				//model.addAttribute("pageInfo1", speaker);
 				return "Video";
 			}

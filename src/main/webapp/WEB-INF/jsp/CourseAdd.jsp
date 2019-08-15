@@ -90,7 +90,7 @@ display:inline-block;
 			    <label for="subjectId" class="col-sm-2 control-label">所属学科</label>
 			    <div class="col-sm-10">
 
-					<select name="subject_id" id="subjectId" class="form-control">
+					<select name="subjectId" id="subjectId" class="form-control">
 						<option value="" selected="selected">请选择所属学科</option>
 
 						<c:forEach var="subject" items="${Subject.data}">
@@ -109,13 +109,13 @@ display:inline-block;
 			<div class="form-group">
 				<label for="subjectTitle" class="col-sm-2 control-label">标题</label>
 				<div class="col-sm-10">
-					<input class="form-control" name="course_title" id="subjectTitle" placeholder="课程标题" type="text">
+					<input class="form-control" name="courseTitle" id="subjectTitle" placeholder="课程标题" type="text">
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="courseDesc" class="col-sm-2 control-label">简介</label>
 				<div class="col-sm-10">
-					<textarea class="form-control" id="courseDesc" name="course_desc" rows="3"></textarea>
+					<textarea class="form-control" id="courseDesc" name="courseDesc" rows="3"></textarea>
 				</div>
 			</div>
 			<div class="form-group">
