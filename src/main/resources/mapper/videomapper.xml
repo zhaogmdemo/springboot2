@@ -107,7 +107,9 @@
 		
 	</select> 
 	
-	
+	<select id="selectVideoCourse" resultMap="videoMap2">
+select * from video,speaker where video.speaker_id=speaker.id and course_id=#{course_id}
+</select> 
    
 	
 </mapper>

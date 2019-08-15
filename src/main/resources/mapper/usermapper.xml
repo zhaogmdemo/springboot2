@@ -98,5 +98,7 @@
     <select id="selectName"  resultMap="userMap">
          select * from user where accounts=#{accounts}    
       </select>
-	
+		<select id="selectAccounts" resultMap="userMap">
+select * from User where accounts=#{accounts}
+</select>
 </mapper>

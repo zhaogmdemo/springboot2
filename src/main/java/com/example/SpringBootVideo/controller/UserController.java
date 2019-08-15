@@ -44,7 +44,7 @@ public class UserController {
 		User.setPassword(md5);
 		UserService.add(User);
 		
-		return "redirect:jsp/index.jsp";
+		return "index";
 	}
 	
 	/*@RequestMapping(value="UserPasswordUpdate.action")
@@ -78,10 +78,7 @@ public class UserController {
 		Map<String,String> map=new HashMap<String, String>();
 		if(user!=null&&user.getPassword().equals(md5)){
 			req.getSession().setAttribute("user2s", user);
-			List<Course> course2s = courseService.selectAll();
-			List<Video> list = VideoService.selectAll();
-			req.getSession().setAttribute("video2s", list);	
-			req.getSession().setAttribute("course2s", course2s);	
+	
 			System.out.println("##########");
 			map.put("cs", "2");
 			
@@ -95,6 +92,15 @@ public class UserController {
 	public String userVideoShow(){
 		
 		return "uservideoshow";
+	}
+	@RequestMapping(value="index")
+	public String index(HttpServletRequest req){
+		List<Course> course2s = courseService.selectAll();
+				
+		req.getSession().setAttribute("course2s", course2s);	
+		List<Video> list = VideoService.selectAll();
+		req.getSession().setAttribute("video2s", list);	
+		return "index";
 	}
 }
 

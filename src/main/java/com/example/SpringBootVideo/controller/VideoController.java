@@ -11,7 +11,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.example.SpringBootVideo.model.Course;
 import com.example.SpringBootVideo.model.Video;
+import com.example.SpringBootVideo.service.CQVideoService;
 import com.example.SpringBootVideo.service.SpeakerService;
 import com.example.SpringBootVideo.service.VideoService;
 
@@ -22,7 +24,7 @@ public class VideoController {
 	@Autowired
 	SpeakerService dao;
 	@Autowired
-	VideoService VideoService;
+	CQVideoService VideoService;
 	
 	
 	
@@ -31,18 +33,28 @@ public class VideoController {
 	@ResponseBody
 	@RequestMapping(value="VideoDisplay.action")
 	public String VideoDisplay(HttpServletRequest req, HttpServletResponse resp){
-		int video_id=Integer.valueOf(req.getParameter("video_id"));
-		int course_id=Integer.valueOf(req.getParameter("course_id"));
-		Video list = VideoService.selectOne(video_id);
+		if(req.getSession().getAttribute("user2s")!=null){
+		int videoId=Integer.valueOf(req.getParameter("videoId"));
+		int courseId=Integer.valueOf(req.getParameter("courseId"));
+		Video list = VideoService.selectOne(videoId);
 
-		List<Video> selectCourse = VideoService.selectCourse(course_id);
+		List<Video> selectCourse = VideoService.selectVideoCourse(courseId);
 		req.getSession().setAttribute("video3s", list);
 		req.getSession().setAttribute("videc3s", selectCourse);
-	
+		return "1";
+		}
 		return "2";
 	}
+	@RequestMapping(value="login")
+	public String index(HttpServletRequest req){
 	
+		return "login";
+	}
+	@RequestMapping(value="videodisplay")
+	public String VideoDisplay(HttpServletRequest req){
 	
+		return "videodisplay";
+	}
 	
 	
 	

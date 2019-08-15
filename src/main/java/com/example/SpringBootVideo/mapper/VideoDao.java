@@ -27,9 +27,12 @@ public interface VideoDao {
 
 	
 	List<Video> selectAll();
+	
 
 
 	List<Video> likeAll(@Param("factor")String factor,@Param("speakerId")Integer speakerId,@Param("courseId")Integer courseId);
 
 	void deleteAll(int[] ids);
+	
+	List<Video> selectVideoCourse(int course_id);
 }
