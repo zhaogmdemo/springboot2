@@ -99,6 +99,6 @@
          select * from user where accounts=#{accounts}    
       </select>
 		<select id="selectAccounts" resultMap="userMap">
-select * from User where accounts=#{accounts}
-</select>
+		select * from User where accounts=#{accounts}
+		</select>
 </mapper>

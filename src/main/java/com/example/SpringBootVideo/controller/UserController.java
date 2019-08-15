@@ -3,11 +3,15 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
 import java.io.FileInputStream;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -72,20 +76,58 @@ public class UserController {
 /*	�û���¼��֤     */
 	@ResponseBody
 	@RequestMapping(value="UserLogin.action")
-	public Map<String,String> UserLogin(String accounts,String password,HttpServletRequest req){
-		User user = UserService.selectAccounts(accounts);
-		String md5=MD5Utils.md5(password);
+	public Map<String,String> UserLogin(String accounts,String password,HttpServletRequest req,HttpServletResponse resp) throws Exception{
+		
 		Map<String,String> map=new HashMap<String, String>();
+		 req.setCharacterEncoding("utf-8");
+		 resp.setCharacterEncoding("utf-8");
+	     resp.setContentType("text/html;charset=utf-8");
+
+		if((accounts==null||"".equals(accounts))||(password==null||"".equals(password))){	
+			            //读取cookie
+		        Cookie[] cookies=req.getCookies();
+			        //过滤出用户名和密码
+		         if(cookies!=null&&cookies.length>0){
+			             for(int i=0;i<cookies.length;i++){
+			                 //取出用户名
+		                 if("cookiename".equals(cookies[i].getName())){
+		                     //pwd=cookies[i].getValue();
+		                     accounts=URLDecoder.decode(cookies[i].getValue(),"utf-8");
+			                }
+			                 //取出密码
+			                 if("cookiepwd".equals(cookies[i].getName())){
+			                	 password=URLDecoder.decode(cookies[i].getValue(),"utf-8");
+			                 }
+			         }
+		      }
+		}
+	
+		User user = UserService.selectAccounts(accounts);
+	
+		String md5=MD5Utils.md5(password);
+	
 		if(user!=null&&user.getPassword().equals(md5)){
 			req.getSession().setAttribute("user2s", user);
-	
-			System.out.println("##########");
-			map.put("cs", "2");
+			System.out.println("*********************");
+				//创建Cookie对象
+				Cookie cookiename=new Cookie("account",URLEncoder.encode(accounts,"utf-8"));
+			    Cookie cookiepwd=new Cookie("password",URLEncoder.encode(password,"utf-8"));
+				//设置有效时间
+			    cookiename.setMaxAge(60*60*24*10);
+			    cookiepwd.setMaxAge(60*60*24*10);
+			    cookiename.setPath(req.getContextPath()+"/UserLogin.action");
+			    cookiepwd.setPath(req.getContextPath()+"/UserLogin.action");
+			    System.out.println("#########^^^^^^^^^^^^");
+				//发送Cookie给浏览器
+				resp.addCookie(cookiename);
+				resp.addCookie(cookiepwd);
+				map.put("cs", "2");
 			
 		}else{
-			System.out.println("$$$$$$$$$$$");
 			map.put("cs", "1");
 		}
+		
+		
 		return map;
 	}
 	@RequestMapping(value="userVideoShow")
