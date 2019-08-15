@@ -116,7 +116,7 @@ clear: both;
 
 						<ul class="sss1">
 							<c:forEach items="${video2s}" var="j">
-								<c:if test="${i.id==j.courseId }">
+								 <c:if test="${i.id==j.courseId }"> 
 									<li class="section-main" onclick="getvideo()">
 										<input type=hidden id="videoId" name="videoId" value="${j.videoId}">
 										<input type=hidden id="courseId" name="courseId" value="${j.courseId}">
@@ -129,7 +129,7 @@ clear: both;
 												src="http://localhost:8080/SpringBootVideo/images/player.png" alt="">${j.time}</span>
 										</div>
 									</li>
-								</c:if>
+								 </c:if> 
 							</c:forEach>
 						</ul>
 <div class="floatclear"></div>
@@ -257,11 +257,16 @@ function getvideo(){
 	$.ajax({
 		url:"http://localhost:8080/SpringBootVideo/VideoDisplay.action",
 		data:{
-			video_id:$("#videoId").val(),
-			course_id:$("#courseId").val(),
+			videoId:$("#videoId").val(),
+			courseId:$("#courseId").val(),
 		},
 	success:function(data){
-		location.href="http://localhost:8080/SpringBootVideo/jsp/videodisplay.jsp";
+		if(data=="2"){
+		location.href="http://localhost:8080/SpringBootVideo/login";
+		}
+		if(data=="1"){
+			location.href="http://localhost:8080/SpringBootVideo/videodisplay";	
+		}
 	}
 	})	
 

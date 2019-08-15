@@ -1,8 +1,9 @@
 package com.example.SpringBootVideo.model;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 
-public class User {
+public class User implements Serializable{
 	private Integer id;
 	private String accounts;
 	private String phone;
