@@ -3,6 +3,8 @@ package com.example.SpringBootVideo.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
@@ -11,13 +13,12 @@ import com.example.SpringBootVideo.model.Video;
 import com.example.SpringBootVideo.service.CQVideoService;
 import com.example.SpringBootVideo.service.VideoService;
 
-
 @Service
 public class CQVideoServiceImpl implements CQVideoService {
 	@Autowired
 	VideoDao dao;
 
-	@Cacheable("getvideo")
+	@Cacheable(value="getvideo")
 		public List<Video> selectAll() {
 			List<Video> list = dao.selectAll();
 			if(list!=null){

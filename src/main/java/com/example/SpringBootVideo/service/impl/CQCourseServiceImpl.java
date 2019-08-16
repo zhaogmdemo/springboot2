@@ -15,13 +15,17 @@ import com.example.SpringBootVideo.service.CQCourseService;
 public class CQCourseServiceImpl implements CQCourseService{
 	@Autowired
     private CourseDao dao;
-
-	@Cacheable("getcourse")
+	
+	@Autowired
+	RedisTemplate  redisTemplate;
 	public List<Course> selectAll() {
-		
-
-
-		return dao.selectAll();
+		List<Course> object = (List<Course>) redisTemplate.opsForValue().get("getcourse");
+		if(object!=null){
+			return object;
+		}
+		List<Course> course2s = dao.selectAll();
+		redisTemplate.opsForValue().set("getcourse",course2s);		
+		return course2s;
 	}
 	 
 

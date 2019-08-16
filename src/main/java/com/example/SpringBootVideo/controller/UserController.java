@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -25,7 +26,9 @@ import org.springframework.web.multipart.MultipartFile;
 import com.example.SpringBootVideo.model.Course;
 import com.example.SpringBootVideo.model.User;
 import com.example.SpringBootVideo.model.Video;
+import com.example.SpringBootVideo.service.CQCourseService;
 import com.example.SpringBootVideo.service.CQUserService;
+import com.example.SpringBootVideo.service.CQVideoService;
 import com.example.SpringBootVideo.service.CourseService;
 import com.example.SpringBootVideo.service.VideoService;
 import com.example.SpringBootVideo.util.MD5Utils;
@@ -35,9 +38,9 @@ import com.example.SpringBootVideo.service.UserService;
 @Controller
 public class UserController {
 	@Autowired
-	VideoService VideoService;
+	CQVideoService VideoService;
 	@Autowired
-	CourseService courseService;
+	CQCourseService courseService;
 	@Autowired
 	CQUserService UserService;
 	
@@ -135,13 +138,18 @@ public class UserController {
 		
 		return "uservideoshow";
 	}
+
+	
 	@RequestMapping(value="index")
 	public String index(HttpServletRequest req){
+	
 		List<Course> course2s = courseService.selectAll();
-				
-		req.getSession().setAttribute("course2s", course2s);	
+	
+		req.getSession().setAttribute("course2s", course2s);
+	
 		List<Video> list = VideoService.selectAll();
 		req.getSession().setAttribute("video2s", list);	
+	
 		return "index";
 	}
 }

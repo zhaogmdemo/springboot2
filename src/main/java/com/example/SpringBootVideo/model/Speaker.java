@@ -1,6 +1,8 @@
 package com.example.SpringBootVideo.model;
 
-public class Speaker {
+import java.io.Serializable;
+
+public class Speaker implements Serializable{
 	private Integer id;
 	private String speakerName;
 	private String speakerDesc;
