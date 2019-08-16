@@ -82,6 +82,7 @@
 				<p class="right-title">HTML页面基本结构</p>
 				<div class="avatar">
 					<span style="background-image: url(${video3s.imageUrl})"></span>
+					<h1>${video3s.imageUrl}</h1>
 					<p><b>讲师：${ sessionScope.videc3s[0].speaker.speakerName }</b><br><i>${ sessionScope.videc3s[0].speaker.speakerDesc}</i></p>
 				</div>
 				<p class="video-intro">
@@ -103,14 +104,16 @@
 		<p class="title">目录</p>
 
 			<c:forEach items="${ videc3s}" var="i">
+			<a href="http://localhost:8080/SpringBootVideo/VideoDisplay2.action?videoId=${i.videoId}&courseId=${i.courseId}"> 
 			<div class="chapter">
-				<p class="biaoti"><a href="http://localhost:8080/Voids/user/VideoGo.do?id=0&amp;subjectName=WEB%E5%89%8D%E7%AB%AF"> ${i.title } </a></p>
+				<p class="biaoti">${i.title }</p>
 				<p class="lecturer">${i.detail }</p>
 				<p class="lecturer">讲师:${i.speaker.speakerName }</p>
 				<div class="v-info">
 					<span class="count"><img src="http://localhost:8080/SpringBootVideo/images/count.png" alt="">${i.playNum }</span>
 					<span class="duration"><img src="http://localhost:8080/SpringBootVideo/images/player.png" alt=""> ${i.time } </span>
 				</div>
+				 </a>
 			</div>
 			</c:forEach>
 			

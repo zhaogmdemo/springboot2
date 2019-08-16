@@ -45,6 +45,20 @@ public class VideoController {
 		}
 		return "2";
 	}
+	@RequestMapping(value="VideoDisplay2.action")
+	public String VideoDisplay2(HttpServletRequest req, HttpServletResponse resp){
+		
+		int videoId=Integer.valueOf(req.getParameter("videoId"));
+		int courseId=Integer.valueOf(req.getParameter("courseId"));
+		Video list = VideoService.selectOne(videoId);
+
+		List<Video> selectCourse = VideoService.selectVideoCourse(courseId);
+		req.getSession().setAttribute("video3s", list);
+		req.getSession().setAttribute("videc3s", selectCourse);
+		return "videodisplay";
+		
+		
+	}
 	@RequestMapping(value="login")
 	public String index(HttpServletRequest req){
 	

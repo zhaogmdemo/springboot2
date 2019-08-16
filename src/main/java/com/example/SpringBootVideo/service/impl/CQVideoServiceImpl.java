@@ -29,8 +29,8 @@ public class CQVideoServiceImpl implements CQVideoService {
 
 	@Override
 	public Video selectOne(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return dao.selectOne(id);
 	}
 
 	@Override

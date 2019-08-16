@@ -6,8 +6,8 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <meta charset="UTF-8">
 <title>Login</title>
-<link rel="stylesheet" href="../CSS/bootstrap.min.css" type="text/css">
-<link rel="stylesheet" href="../CSS/font-awesome.min.css" type="text/css">
+<link rel="stylesheet" href="./CSS/bootstrap.min.css" type="text/css">
+<link rel="stylesheet" href="./CSS/font-awesome.min.css" type="text/css">
 <style type="text/css">
 .divForm {
 	width: 300px;
@@ -38,10 +38,10 @@ body {
 	left: 80%;
 }
 </style>
-<script type="text/javascript" src="../jquery/jquery.js"></script>
-<script type="text/javascript" src="../CSS/bootstrap.min.js"></script>
-<script type="text/javascript" src="../jquery/jquery.validate.min.js"></script>
-<script type="text/javascript" src="../jquery/messages_zh.js "></script>
+<script type="text/javascript" src="./jquery/jquery.js"></script>
+<script type="text/javascript" src="./CSS/bootstrap.min.js"></script>
+<script type="text/javascript" src="./jquery/jquery.validate.min.js"></script>
+<script type="text/javascript" src="./jquery/messages_zh.js "></script>
 <script type="text/javascript">
 $(function(){
 	$("#form").validate({
@@ -102,10 +102,10 @@ $(function(){
                 </div>
                 <div class="modal-body" >
                   
-                    <form class="form-group" action="UserAdd.do" id="form">
+                    <form class="form-group" action="UserLogin.action" id="form">
                             <div class="form-group" >
                                 <label for="">用户名</label>
-                                <input class="form-control" type="text" placeholder="6-15位字母或数字" name="userName">
+                                <input class="form-control" type="text" placeholder="6-15位字母或数字" name="accounts">
                                 <div id="msg"></div>
                             </div>
                             <div class="form-group">
@@ -144,7 +144,7 @@ $(function(){
 		<form action="login.do" method="post" name="forml" id="loginform">
 			<table>
 				<tr>
-					<td><img alt="智游教育" src="img/logo.png" height="55" width="150"></td>
+					<td><img alt="智游教育" src="images/logo.png" height="55" width="150"></td>
 				</tr>
 				<tr>
 					<td><p style="color: gray">视频登录</p></td>
@@ -153,24 +153,24 @@ $(function(){
 					<td>
 						<div class="form-group">
 						
-							<input type="text" class="form-control" id="uname"
-							value="${uncookie }"	name="Accounts">
+							<input type="text" class="form-control" id="loginEmail"
+							value="${uncookie }"	name="accounts">
 						</div>
 					</td>
 				</tr>
 				<tr>
 					<td>
 						<div class="form-group">
-							<input type="password" class="form-control" id="ps"
+							<input type="password" class="form-control"  id="loginPassword"
 							value="${pscookie }"	name="password">
 
 						</div>
 					</td>
-					<td><img src="../images/eyeopen.gif" id="eye" class="eye"
+					<td><img src="./images/xian.gif" id="eye" class="eye"
 						 title="显示密码"></td>
 				</tr>
 				<tr>
-					<td><img src="img/normal.png" id="check" >记住用户名密码
+					<td><img src="images/cang.png" id="check" >记住用户名密码
 					 &nbsp; &nbsp; &nbsp; &nbsp;
 					 <a href="" data-toggle="modal" data-dismiss="modal" data-target="#register">注册</a>
 					</td>
@@ -179,7 +179,7 @@ $(function(){
 					<td>&nbsp;</td>
 				</tr>
 				<tr>
-					<td><input type="submit" value="登陆"
+					<td><input type="submit" value="登陆"onclick="commitLogin2()" 
 						class="btn btn-danger btn-block"></td>
 				</tr>
 			</table>
@@ -191,7 +191,39 @@ $(function(){
 			alert('${msg}');
 		</script>
 	</c:if>
+<script type="text/javascript">
 
+function commitLogin2(){
+	   
+	   var accounts =$("#loginEmail").val();
+	   var password =$("#loginPassword").val();
+	  
+	   if(null!=accounts && accounts!="" && null!=password && password!=""){
+		
+	      
+	        $.ajax({
+	        	url:"${pageContext.request.contextPath}/UserLogin.action",
+	        	data:{
+	        		 accounts:$("#loginEmail").val(),
+	        		 password:$("#loginPassword").val(),
+	        	},
+				success:function(data){
+					
+					if(data.cs=="1"){			
+						$("#emailMsg2").html("账号或密码不正确");
+						$("#emailMsg2").attr("style","color:red;");
+					
+					}else if(data.cs=="2"){
+						
+						location.href="http://localhost:8080/SpringBootVideo/videodisplay";
+						
+					}
+				}
+	        })
+	 
+	   }
+	}
+</script>
 
 	<script type="text/javascript">
 
@@ -199,18 +231,18 @@ $(function(){
      $("#eye").click(function(){
     	 var i = $("#eye").get(0).title;
     	 if (i == "隐藏密码") {
-    		 $("#ps").get(0).type="password";
+    		 $("#loginPassword").get(0).type="password";
     		 $("#eye").get(0).title = "显示密码";
-    		 $("#eye").get(0).src = "../images/eyeopen.gif";
+    		 $("#eye").get(0).src = "./images/xian.gif";
 
 			} else {
 				 $("#eye").get(0).title = "隐藏密码";
-				 $("#ps").get(0).type= "text";
-				 $("#eye").get(0).src = "../images/eyeclose.gif";
+				 $("#loginPassword").get(0).type= "text";
+				 $("#eye").get(0).src = "./images/cang.gif";
 			}
      });
     });
-
+   
 		var flag = 0;
 		$(function () {
 			$("#check").click(function () {
@@ -222,11 +254,11 @@ $(function(){
 					document.cookie = "uncookie="+userName;
 					document.cookie = "pscookie="+password;
 
-					$("#check").get(0).src = "../images/check.png";
+					$("#check").get(0).src = "./images/check.png";
 					
 					flag = 1;
 				} else {
-					$("#check").get(0).src = "../images/normal.png";
+					$("#check").get(0).src = "./images/normal.png";
 					document.cookie = "uncookie=";
 					document.cookie = "pscookie=";
 //                  $.cookie('uncookie',"");
