@@ -135,7 +135,7 @@ public class UserController {
 	}
 	@RequestMapping(value="userVideoShow")
 	public String userVideoShow(){
-		
+		System.out.println("213");
 		return "uservideoshow";
 	}
 
